@@ -1,4 +1,5 @@
 from django.urls import reverse_lazy
+from django.shortcuts import get_object_or_404
 from django.views.generic.edit import CreateView
 from django.views import generic
 from .models import CustomUser
@@ -13,5 +14,10 @@ class UserProfileView(generic.DetailView):
     model = CustomUser
     template_name = 'users/userProfile.html'
     context_object_name = 'userProfile'
+    queryset = CustomUser.objects.all()
+
+    def get_object(self):
+        UserName = self.kwargs.get("username")
+        return get_object_or_404(CustomUser, username=UserName)
 
 
