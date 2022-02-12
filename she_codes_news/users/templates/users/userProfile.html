@@ -10,4 +10,16 @@
 
 <h3>Your Stories</h3>
 
+<div id="user-stories-list">
+    {% if user.newsstory_set.all %}
+        {% for story in user.newsstory_set.all %}
+            <ul>
+                <li><a href="{% url 'news:story' story.id %}">{{story.title}}, {{ story.pub_date }}</a></li>
+            </ul>  
+        {% endfor %}
+    {% else %}
+        <p>No stories are available.</p>
+    {% endif %}
+</div>
+
 {% endblock %}

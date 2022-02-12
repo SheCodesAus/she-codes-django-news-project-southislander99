@@ -13,3 +13,7 @@ class CustomUserChangeForm(UserChangeForm):
     class Meta:
         model = CustomUser
         fields = ['username', 'email', 'first_name', 'last_name']
+
+    def __init__(self, *args, **kwargs):
+        super(CustomUserChangeForm, self).__init__(*args, **kwargs)
+        self.fields.pop('password')
