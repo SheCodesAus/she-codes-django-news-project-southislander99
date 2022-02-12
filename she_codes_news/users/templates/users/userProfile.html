@@ -3,7 +3,10 @@
 {% block content %}
 <h2>Your Profile</h2>
 <p>Username: {{ user.username }}</p>
-<p>Date joined:</p>
+<p>Name: {{ user.first_name }} {{ user.last_name }}</p>
+<p>Email: {{ user.email }} </p>
+<p>Date joined: {{ user.date_joined }} </p>
+<a href="{% url 'users:editProfile' username=request.user.username %}" class="button">Edit Profile</a>
 
 <h3>Your Stories</h3>
 
