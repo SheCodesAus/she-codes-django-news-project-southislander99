@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Your Profile</h2>
+<p>Username: {{ user.username }}</p>
+<p>Name: {{ user.first_name }} {{ user.last_name }}</p>
+<p>Email: {{ user.email }} </p>
+<p>Date joined: {{ user.date_joined }} </p>
+<a href="{% url 'users:editProfile' username=request.user.username %}" class="button">Edit Profile</a>
+
+<h3>Your Stories</h3>
+
+<div id="user-stories-list">
+    {% if user.newsstory_set.all %}
+        {% for story in user.newsstory_set.all %}
+            <ul>
+                <li><a href="{% url 'news:story' story.id %}">{{story.title}}, {{ story.pub_date }}</a></li>
+            </ul>  
+        {% endfor %}
+    {% else %}
+        <p>No stories are available.</p>
+    {% endif %}
+</div>
+
+{% endblock %}
